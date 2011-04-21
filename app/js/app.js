@@ -2,7 +2,10 @@
 
 /* App Module */
 
-var phonecatApp = angular.module('phonecatApp', ['phonecatFilters']);
+var phonecatApp = angular.module('phonecatApp', [
+  'phonecatControllers',
+  'phonecatFilters'
+]);
 
 phonecatApp.config(['$routeProvider',
   function($routeProvider) {

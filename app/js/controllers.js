@@ -2,9 +2,9 @@
 
 /* Controllers */
 
-var phonecatApp = angular.module('phonecatApp', []);
+var phonecatControllers = angular.module('phonecatControllers', []);
 
-phonecatApp.controller('PhoneListCtrl', ['$scope',
+phonecatControllers.controller('PhoneListCtrl', ['$scope',
   function($scope) {
     $http.get('phones/phones.json').success(function(data) {
       $scope.phones = data;
@@ -13,9 +13,14 @@ phonecatApp.controller('PhoneListCtrl', ['$scope',
     $scope.orderProp = 'age';
   }]);
 
-phonecatApp.controller('PhoneDetailCtrl', ['$scope', '$routeParams', '$http',
+phonecatControllers.controller('PhoneDetailCtrl', ['$scope', '$routeParams', '$http',
   function($scope, $routeParams, $http) {
     $http.get('phones/' + $routeParams.phoneId + '.json').success(function(data) {
       $scope.phone = data;
+      $scope.mainImageUrl = data.images[0];
     });
+
+    $scope.setImage = function(imageUrl) {
+      $scope.mainImageUrl = imageUrl;
+    }
   }]);
